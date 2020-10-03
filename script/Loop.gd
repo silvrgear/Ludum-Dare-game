@@ -2,8 +2,25 @@ extends StaticBody2D
 
 export(int) var rotation_speed = 1
 var rotation_direction = 0
+
+var startAngle
+var endAngle
+
 func _ready():
 	pass
+
+func _process(delta):
+	if Input.is_action_pressed("click"):
+		if not startAngle:
+			startAngle = rad2deg(global_position.angle_to_point(get_global_mouse_position()))
+		endAngle = rad2deg(global_position.angle_to_point(get_global_mouse_position()))
+		rotation_degrees -= startAngle - endAngle
+		startAngle = endAngle
+
+	if Input.is_action_just_released("click"):
+		startAngle = null
+		endAngle = null
+
 
 func _input(event):
 	if Input.is_action_pressed("rotate_clockwise") && Input.is_action_pressed("rotate_counterclockwise"):
