@@ -18,49 +18,68 @@ position = Vector2( 320, 180 )
 anchor_mode = 0
 current = true
 
-[node name="Node" type="Node" parent="."]
+[node name="Slimes" type="Node" parent="."]
 
-[node name="Slime" parent="Node" instance=ExtResource( 2 )]
+[node name="Slime" parent="Slimes" instance=ExtResource( 2 )]
 position = Vector2( 319.485, 70.1401 )
-mode = 0
 gravity_scale = 0.1
 
-[node name="Slime2" parent="Node" instance=ExtResource( 2 )]
+[node name="Slime2" parent="Slimes" instance=ExtResource( 2 )]
 position = Vector2( 317.925, 48.303 )
-mode = 0
 gravity_scale = 0.1
 
-[node name="Slime3" parent="Node" instance=ExtResource( 2 )]
+[node name="Slime3" parent="Slimes" instance=ExtResource( 2 )]
 position = Vector2( 318.817, 30.9225 )
-mode = 0
 gravity_scale = 0.1
 
-[node name="Slime4" parent="Node" instance=ExtResource( 2 )]
+[node name="Slime4" parent="Slimes" instance=ExtResource( 2 )]
 position = Vector2( 323.719, 36.2703 )
-mode = 0
 gravity_scale = 0.1
 
-[node name="Slime5" parent="Node" instance=ExtResource( 2 )]
+[node name="Slime5" parent="Slimes" instance=ExtResource( 2 )]
 position = Vector2( 321.713, 21.5638 )
-mode = 0
 gravity_scale = 0.1
 
-[node name="Slime6" parent="Node" instance=ExtResource( 2 )]
+[node name="Slime10" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 321.713, 21.5638 )
+gravity_scale = 0.1
+
+[node name="Slime6" parent="Slimes" instance=ExtResource( 2 )]
 position = Vector2( 321.268, 14.2105 )
-mode = 0
 gravity_scale = 0.1
 
-[node name="Slime7" parent="Node" instance=ExtResource( 2 )]
-position = Vector2( 317.925, 18.4442 )
-mode = 0
+[node name="Slime7" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 331.933, 50.5271 )
 gravity_scale = 0.1
 
-[node name="Slime8" parent="Node" instance=ExtResource( 2 )]
+[node name="Slime11" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 330.804, 65.6648 )
+gravity_scale = 0.1
+
+[node name="Slime12" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 306.403, 62.5017 )
+gravity_scale = 0.1
+
+[node name="Slime13" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 326.963, 37.36 )
+gravity_scale = 0.1
+
+[node name="Slime14" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 312.729, 39.4562 )
+gravity_scale = 0.1
+
+[node name="Slime15" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 329.9, 22.737 )
+gravity_scale = 0.1
+
+[node name="Slime16" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 313.633, 25.2223 )
+gravity_scale = 0.1
+
+[node name="Slime8" parent="Slimes" instance=ExtResource( 2 )]
 position = Vector2( 320.822, 54.5422 )
-mode = 0
 gravity_scale = 0.1
 
-[node name="Slime9" parent="Node" instance=ExtResource( 2 )]
+[node name="Slime9" parent="Slimes" instance=ExtResource( 2 )]
 position = Vector2( 319.485, 61.6726 )
-mode = 0
 gravity_scale = 0.1
