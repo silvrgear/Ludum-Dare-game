@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://script/Loop.gd" type="Script" id=1]
 [ext_resource path="res://sprite/loop.png" type="Texture" id=2]
+[ext_resource path="res://entities/Spike.tscn" type="PackedScene" id=3]
 
 [node name="Loop" type="StaticBody2D"]
 script = ExtResource( 1 )
@@ -18,3 +19,6 @@ polygon = PoolVector2Array( 18.1584, 5.22392, 16.5413, -78.3842, 11.1272, -121.7
 visible = false
 build_mode = 1
 polygon = PoolVector2Array( 52.3206, -108.661, 57.2206, -77.4799, 61.675, -3.0899, 68.8022, 38.3369, 11.7847, 37.8914, 15.7938, 81.1, 17.5756, 118.072, 51.4297, 109.609, 92.8565, 78.4273, 114.238, 41.9005, 120.92, -16.8988, 99.0928, -73.0255 )
+
+[node name="Spike" parent="." instance=ExtResource( 3 )]
+position = Vector2( -5.94604, 103.461 )
