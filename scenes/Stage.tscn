@@ -1,12 +1,66 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://entities/Loop.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/Slime.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/bg.png" type="Texture" id=3]
 
 [node name="Stage" type="Node2D"]
 
-[node name="Loop" parent="." instance=ExtResource( 1 )]
-position = Vector2( 325.133, 178.299 )
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 0, -300 )
+texture = ExtResource( 3 )
+centered = false
 
-[node name="Slime" parent="." instance=ExtResource( 2 )]
-position = Vector2( 359.594, 26.0203 )
+[node name="Loop" parent="." instance=ExtResource( 1 )]
+position = Vector2( 320, 180 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Slime" parent="Node" instance=ExtResource( 2 )]
+position = Vector2( 319.485, 70.1401 )
+mode = 0
+gravity_scale = 0.1
+
+[node name="Slime2" parent="Node" instance=ExtResource( 2 )]
+position = Vector2( 317.925, 48.303 )
+mode = 0
+gravity_scale = 0.1
+
+[node name="Slime3" parent="Node" instance=ExtResource( 2 )]
+position = Vector2( 318.817, 30.9225 )
+mode = 0
+gravity_scale = 0.1
+
+[node name="Slime4" parent="Node" instance=ExtResource( 2 )]
+position = Vector2( 323.719, 36.2703 )
+mode = 0
+gravity_scale = 0.1
+
+[node name="Slime5" parent="Node" instance=ExtResource( 2 )]
+position = Vector2( 321.713, 21.5638 )
+mode = 0
+gravity_scale = 0.1
+
+[node name="Slime6" parent="Node" instance=ExtResource( 2 )]
+position = Vector2( 321.268, 14.2105 )
+mode = 0
+gravity_scale = 0.1
+
+[node name="Slime7" parent="Node" instance=ExtResource( 2 )]
+position = Vector2( 317.925, 18.4442 )
+mode = 0
+gravity_scale = 0.1
+
+[node name="Slime8" parent="Node" instance=ExtResource( 2 )]
+position = Vector2( 320.822, 54.5422 )
+mode = 0
+gravity_scale = 0.1
+
+[node name="Slime9" parent="Node" instance=ExtResource( 2 )]
+position = Vector2( 319.485, 61.6726 )
+mode = 0
+gravity_scale = 0.1
