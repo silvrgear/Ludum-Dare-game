@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/Loop.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/Slime.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprites/bg.png" type="Texture" id=3]
+[ext_resource path="res://scripts/scorer.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 178.496, 45.9974 )
 
 [node name="Stage" type="Node2D"]
 
@@ -21,65 +25,50 @@ current = true
 [node name="Slimes" type="Node" parent="."]
 
 [node name="Slime" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 319.485, 70.1401 )
-gravity_scale = 0.1
+position = Vector2( 321.866, 64.3732 )
 
 [node name="Slime2" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 317.925, 48.303 )
-gravity_scale = 0.1
+position = Vector2( 322.976, 55.4967 )
 
 [node name="Slime3" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 318.817, 30.9225 )
-gravity_scale = 0.1
+position = Vector2( 314.376, 43.8463 )
 
 [node name="Slime4" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 323.719, 36.2703 )
-gravity_scale = 0.1
+position = Vector2( 328.246, 31.3638 )
 
 [node name="Slime5" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 321.713, 21.5638 )
-gravity_scale = 0.1
-
-[node name="Slime10" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 321.713, 21.5638 )
-gravity_scale = 0.1
+position = Vector2( 322.421, 23.0421 )
 
 [node name="Slime6" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 321.268, 14.2105 )
-gravity_scale = 0.1
+position = Vector2( 312.99, 63.8184 )
 
 [node name="Slime7" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 331.933, 50.5271 )
-gravity_scale = 0.1
-
-[node name="Slime11" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 330.804, 65.6648 )
-gravity_scale = 0.1
-
-[node name="Slime12" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 306.403, 62.5017 )
-gravity_scale = 0.1
-
-[node name="Slime13" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 326.963, 37.36 )
-gravity_scale = 0.1
-
-[node name="Slime14" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 312.729, 39.4562 )
-gravity_scale = 0.1
-
-[node name="Slime15" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 329.9, 22.737 )
-gravity_scale = 0.1
-
-[node name="Slime16" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 313.633, 25.2223 )
-gravity_scale = 0.1
+position = Vector2( 331.297, 46.0654 )
 
 [node name="Slime8" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 320.822, 54.5422 )
-gravity_scale = 0.1
+position = Vector2( 308.551, 25.816 )
 
 [node name="Slime9" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 319.485, 61.6726 )
-gravity_scale = 0.1
+position = Vector2( 325.472, 8.063 )
+
+[node name="Slime10" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 321.034, 1.68303 )
+
+[node name="Slime11" parent="Slimes" instance=ExtResource( 2 )]
+position = Vector2( 316.041, 11.9465 )
+
+[node name="AreaScore" type="Area2D" parent="."]
+position = Vector2( 324.9, 369.123 )
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaScore"]
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="AreaScore" to="AreaScore" method="_on_AreaScore_body_entered"]
