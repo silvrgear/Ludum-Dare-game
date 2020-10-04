@@ -1,14 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://entities/Loop.tscn" type="PackedScene" id=1]
-[ext_resource path="res://entities/Slime.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/canvas.gd" type="Script" id=2]
 [ext_resource path="res://sprites/bg.png" type="Texture" id=3]
 [ext_resource path="res://scripts/scorer.gd" type="Script" id=4]
 [ext_resource path="res://sprites/king.png" type="Texture" id=5]
 [ext_resource path="res://sprites/bg_2.png" type="Texture" id=6]
 [ext_resource path="res://sprites/crown.png" type="Texture" id=7]
+[ext_resource path="res://scripts/Stage.gd" type="Script" id=8]
+[ext_resource path="res://entities/Slime.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scripts/Timer.gd" type="Script" id=10]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "Idle"
 length = 0.6
 loop = true
@@ -37,11 +40,16 @@ tracks/1/keys = {
 "values": [ Vector2( 20, -61 ), Vector2( 20, -42 ), Vector2( 20, -41 ), Vector2( 20, -41 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 329, 24 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 154.967 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 178.496, 45.9974 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "camera_pan"
+[sub_resource type="Animation" id=3]
 length = 6.5
 step = 0.5
 tracks/0/type = "value"
@@ -56,8 +64,132 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 300 ), Vector2( 0, 300 ), Vector2( 0, -300 ), Vector2( 0, -300 ), Vector2( 0, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/SavedCounter:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Button:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Button:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Timer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CanvasLayer/TotalSlimes:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "time_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 300 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Button:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Button:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="Stage" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -77,53 +209,111 @@ texture = ExtResource( 7 )
 
 [node name="Anim" type="AnimationPlayer" parent="Background/King"]
 autoplay = "Idle"
-anims/Idle = SubResource( 3 )
+anims/Idle = SubResource( 1 )
 
 [node name="Near" type="Sprite" parent="Background"]
 position = Vector2( 0, -300 )
 texture = ExtResource( 3 )
 centered = false
 
+[node name="UndergroundBorder" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/UndergroundBorder"]
+polygon = PoolVector2Array( 169, 200, 175, 207, 187, 239, 199, 266, 213, 285, 238, 299, 261, 308, 267, 315, 260, 318, 190, 318, 139, 319, 134, 293, 134, 293, 147, 272, 161, 229, 165, 207 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Background/UndergroundBorder"]
+polygon = PoolVector2Array( 472, 205, 467, 209, 451, 243, 436, 278, 413, 290, 389, 304, 376, 313, 377, 316, 406, 318, 456, 319, 498, 321, 511, 312, 504, 286, 487, 253, 476, 215 )
+
+[node name="LandBorder" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/LandBorder"]
+polygon = PoolVector2Array( 281, 22, 296, 58, 245, 75, 100, 78, 1, 80, -7, 55, -3, 39, 134, 42, 247, 42 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Background/LandBorder"]
+polygon = PoolVector2Array( 388, 71, 529, 73, 648, 74, 650, 43, 513, 44, 393, 43, 358, 16, 342, 61 )
+
+[node name="BunkerBorder" type="StaticBody2D" parent="Background"]
+position = Vector2( 318, 619 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/BunkerBorder"]
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background/BunkerBorder"]
+position = Vector2( -162, -150 )
+rotation = -0.185107
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Background/BunkerBorder"]
+position = Vector2( 178, -155 )
+rotation = 0.257804
+shape = SubResource( 6 )
+
 [node name="Loop" parent="." instance=ExtResource( 1 )]
 position = Vector2( 320, 180 )
 
 [node name="Slimes" type="Node2D" parent="."]
 
-[node name="Slime" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 321.866, 64.3732 )
+[node name="Slime" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 326, 25 )
 
-[node name="Slime2" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 322.976, 55.4967 )
+[node name="Slime2" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 310, 24 )
 
-[node name="Slime3" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 314.376, 43.8463 )
+[node name="Slime3" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 296, 20 )
 
-[node name="Slime4" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 328.246, 31.3638 )
+[node name="Slime4" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 320, 12 )
 
-[node name="Slime5" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 322.421, 23.0421 )
+[node name="Slime5" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 340, 17 )
 
-[node name="Slime6" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 312.99, 63.8184 )
+[node name="Slime6" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 346, 32 )
 
-[node name="Slime7" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 331.297, 46.0654 )
+[node name="Slime7" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 333, 41 )
 
-[node name="Slime8" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 308.551, 25.816 )
+[node name="Slime8" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 311, 40 )
 
-[node name="Slime9" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 325.472, 8.063 )
+[node name="Slime9" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 300, 35 )
 
-[node name="Slime10" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 321.034, 1.68303 )
+[node name="Slime10" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 304, 11 )
 
-[node name="Slime11" parent="Slimes" instance=ExtResource( 2 )]
-position = Vector2( 316.041, 11.9465 )
+[node name="Slime11" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 338, 7 )
+
+[node name="Slime12" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 334, 34 )
+
+[node name="Slime13" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 320, 44 )
+
+[node name="Slime14" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 319, 56 )
+
+[node name="Slime15" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 307, 49 )
+
+[node name="Slime16" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 337, 52 )
+
+[node name="Slime17" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 324, 35 )
+
+[node name="Slime18" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 297, 46 )
+
+[node name="Slime19" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 320, 2 )
+
+[node name="Slime20" parent="Slimes" instance=ExtResource( 9 )]
+position = Vector2( 328, -6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, 300 )
 anchor_mode = 0
 current = true
 
@@ -132,19 +322,91 @@ position = Vector2( 324.9, 369.123 )
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaScore"]
-shape = SubResource( 1 )
+position = Vector2( 0.100006, 2.87701 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "camera_pan"
-anims/camera_pan = SubResource( 2 )
+anims/camera_pan = SubResource( 3 )
+anims/time_out = SubResource( 4 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="SavedCounter" type="Label" parent="CanvasLayer"]
+visible = false
 margin_right = 51.0
 margin_bottom = 14.0
-text = "Score: 0"
+text = "Slimes Saved: 0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TotalSlimes" type="Label" parent="CanvasLayer"]
+visible = false
+margin_top = 15.0
+margin_right = 40.0
+margin_bottom = 29.0
+text = "Total Slimes: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+self_modulate = Color( 0, 0, 0, 0.588235 )
+margin_left = 483.0
+margin_top = 74.0
+margin_right = 631.0
+margin_bottom = 192.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+margin_left = 6.0
+margin_top = 9.0
+margin_right = 142.0
+margin_bottom = 111.0
+text = "Guide the Slimes to the King in the bunker. Rotate the loop using A or D keys or drag using left mouse button."
+align = 1
+autowrap = true
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -49.0
+margin_top = 6.0
+margin_right = -18.0
+margin_bottom = 26.0
+disabled = true
+text = "OK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -80.0
+margin_right = 80.0
+margin_bottom = 40.0
+text = "00:00"
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Timer"]
 [connection signal="body_entered" from="AreaScore" to="AreaScore" method="_on_AreaScore_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="CanvasLayer/Timer" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="button_up" from="CanvasLayer/Button" to="CanvasLayer" method="_on_Button_button_up"]
+[connection signal="timeout" from="CanvasLayer/Timer/Timer" to="CanvasLayer/Timer" method="_on_Timer_timeout"]
