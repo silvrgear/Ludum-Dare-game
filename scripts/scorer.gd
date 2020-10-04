@@ -10,4 +10,4 @@ func _on_AreaScore_body_entered(body):
 	if body.is_in_group("slime"):
 		score += 1
 	
-	get_parent().get_node("Label").text = "Score: " + str(score)
+	get_parent().get_node("CanvasLayer/Label").text = "Score: " + str(score)
