@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/slime crowd.ogg-e7472459216b97bcc2664c2d841a6a84.oggstr"
+
+[deps]
+
+source_file="res://sounds/slime crowd.ogg"
+dest_files=[ "res://.import/slime crowd.ogg-e7472459216b97bcc2664c2d841a6a84.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
