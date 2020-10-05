@@ -9,6 +9,8 @@ var startAngle
 var endAngle
 
 export (int) var number_of_slimes
+var slimes_inside = []
+var slime_to_look = null
 
 func _ready():
 	pass
@@ -41,9 +43,13 @@ func _input(event):
 func _physics_process(delta):
 	if control == true:
 		rotation_degrees += rotation_direction * rotation_speed
-#	if number_of_slimes <= 0:
-#		blockade()
-	
+		
+	for slime in slimes_inside:
+		slime_to_look = slime
+		if slime.slime_nearby > slime_to_look.slime_nearby:
+			slime_to_look = slime
+	if slime_to_look != null:
+		$Node2D.look_at(slime_to_look.global_position)
 	pass
 
 func blockade():
@@ -55,7 +61,9 @@ func blockade():
 func _on_slime_scanner_body_entered(body):
 	if body.is_in_group("slime"):
 		number_of_slimes -= 1
+		slimes_inside.append(body)
 	#close gate when everyone is inside
 	if number_of_slimes <= 0:
 		$AnimationPlayer.play_backwards("open")
 	pass # Replace with function body.
+
