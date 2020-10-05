@@ -66,8 +66,11 @@ func blockade():
 
 func _on_slime_scanner_body_entered(body):
 	if body.is_in_group("slime"):
-		number_of_slimes -= 1
-		slimes_inside.append(body)
+		if body in slimes_inside:
+			pass
+		else:
+			number_of_slimes -= 1
+			slimes_inside.append(body)
 	#close gate when everyone is inside
 		if number_of_slimes <= 0 && lock == false:
 			lock = true
