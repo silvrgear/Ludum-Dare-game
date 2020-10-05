@@ -49,12 +49,12 @@ func _physics_process(delta):
 		rotation_degrees += rotation_direction * rotation_speed
 		
 	for slime in slimes_inside:
-		if slime == null:
+		if (!(weakref(slime).get_ref())):
 			continue
 		slime_to_look = slime
 		if slime.slime_nearby > slime_to_look.slime_nearby:
 			slime_to_look = slime
-	if slime_to_look != null:
+	if slime_to_look != null && weakref(slime_to_look).get_ref():
 		$EyeNode.look_at(slime_to_look.global_position)
 	pass
 
