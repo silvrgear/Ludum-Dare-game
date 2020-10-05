@@ -11,6 +11,7 @@ var endAngle
 export (int) var number_of_slimes
 var slimes_inside = []
 var slime_to_look = null
+var lock = false
 
 func _ready():
 	pass
@@ -21,8 +22,11 @@ func _process(delta):
 			if not startAngle:
 				startAngle = rad2deg(global_position.angle_to_point(get_global_mouse_position()))
 			endAngle = rad2deg(global_position.angle_to_point(get_global_mouse_position()))
-			rotation_degrees = lerp_angle(rotation_degrees,rotation_degrees- (startAngle - endAngle),rotation_sensitivity)
+#			rotation_degrees = lerp_angle(rotation_degrees,rotation_degrees- (startAngle - endAngle),rotation_sensitivity)
 #			rotation_degrees -= startAngle - endAngle
+			#clamp rotation
+			rotation_degrees -= clamp(startAngle - endAngle,-1.5,1.5)
+			print(startAngle - endAngle)
 			startAngle = endAngle
 	
 		if Input.is_action_just_released("click"):
@@ -51,7 +55,7 @@ func _physics_process(delta):
 		if slime.slime_nearby > slime_to_look.slime_nearby:
 			slime_to_look = slime
 	if slime_to_look != null:
-		$Node2D.look_at(slime_to_look.global_position)
+		$EyeNode.look_at(slime_to_look.global_position)
 	pass
 
 func blockade():
@@ -65,7 +69,9 @@ func _on_slime_scanner_body_entered(body):
 		number_of_slimes -= 1
 		slimes_inside.append(body)
 	#close gate when everyone is inside
-	if number_of_slimes <= 0:
-		$AnimationPlayer.play_backwards("open")
+		if number_of_slimes <= 0 && lock == false:
+			lock = true
+			$Blockade/slime_scanner.monitoring = false
+			$AnimationPlayer.play_backwards("open")
 	pass # Replace with function body.
 
