@@ -45,6 +45,8 @@ func _physics_process(delta):
 		rotation_degrees += rotation_direction * rotation_speed
 		
 	for slime in slimes_inside:
+		if slime == null:
+			continue
 		slime_to_look = slime
 		if slime.slime_nearby > slime_to_look.slime_nearby:
 			slime_to_look = slime

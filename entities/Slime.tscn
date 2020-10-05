@@ -95,6 +95,7 @@ color_ramp = SubResource( 4 )
 texture = ExtResource( 1 )
 vframes = 5
 hframes = 2
+frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
