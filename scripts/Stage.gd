@@ -20,4 +20,6 @@ func game_end():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "camera_pan":
 		start_game()
+	if anim_name == "time_out":
+		get_tree().change_scene("res://scenes/Credits.tscn")
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://entities/Loop.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/canvas.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scripts/Timer.gd" type="Script" id=10]
 [ext_resource path="res://sounds/bgm.ogg" type="AudioStream" id=11]
 [ext_resource path="res://sounds/victory 1.ogg" type="AudioStream" id=12]
+[ext_resource path="res://fonts/LuckiestGuy.ttf" type="DynamicFontData" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -140,6 +141,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=6]
+length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera2D:position")
 tracks/0/interp = 1
@@ -212,6 +214,27 @@ tracks/5/keys = {
 "update": 1,
 "values": [ false ]
 }
+
+[sub_resource type="DynamicFont" id=7]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=8]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=9]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 18
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 13 )
 
 [node name="Stage" type="Node2D"]
 script = ExtResource( 8 )
@@ -360,8 +383,11 @@ script = ExtResource( 2 )
 
 [node name="SavedCounter" type="Label" parent="CanvasLayer"]
 visible = false
-margin_right = 51.0
-margin_bottom = 14.0
+margin_left = 7.0
+margin_top = 5.0
+margin_right = 127.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 7 )
 text = "Slimes Saved: 0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -369,9 +395,11 @@ __meta__ = {
 
 [node name="TotalSlimes" type="Label" parent="CanvasLayer"]
 visible = false
-margin_top = 15.0
-margin_right = 40.0
-margin_bottom = 29.0
+margin_left = 7.0
+margin_top = 20.0
+margin_right = 125.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 8 )
 text = "Total Slimes: 0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -383,7 +411,7 @@ self_modulate = Color( 0, 0, 0, 0.588235 )
 margin_left = 483.0
 margin_top = 74.0
 margin_right = 631.0
-margin_bottom = 192.0
+margin_bottom = 245.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -393,7 +421,8 @@ margin_left = 6.0
 margin_top = 9.0
 margin_right = 142.0
 margin_bottom = 111.0
-text = "Guide the Slimes to the King in the bunker. Rotate the loop using A or D keys or drag using left mouse button."
+custom_fonts/font = SubResource( 9 )
+text = "Guide the Slimes to the King in the bunker below. Rotate the loop using A or D keys or drag using left mouse button."
 align = 1
 autowrap = true
 
@@ -404,9 +433,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = -49.0
-margin_top = 6.0
+margin_top = 62.0
 margin_right = -18.0
-margin_bottom = 26.0
+margin_bottom = 82.0
 disabled = true
 text = "OK"
 __meta__ = {
@@ -420,6 +449,7 @@ anchor_right = 0.5
 margin_left = -80.0
 margin_right = 80.0
 margin_bottom = 40.0
+custom_fonts/font = SubResource( 10 )
 text = "00:00"
 align = 1
 valign = 1
