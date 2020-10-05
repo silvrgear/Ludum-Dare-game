@@ -40,16 +40,16 @@ tracks/1/keys = {
 "values": [ Vector2( 20, -61 ), Vector2( 20, -42 ), Vector2( 20, -41 ), Vector2( 20, -41 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 329, 24 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 154.967 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 178.496, 45.9974 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 length = 6.5
 step = 0.5
 tracks/0/type = "value"
@@ -137,8 +137,7 @@ tracks/6/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "time_out"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera2D:position")
 tracks/0/interp = 1
@@ -201,10 +200,9 @@ texture = ExtResource( 6 )
 position = Vector2( 412, 535 )
 texture = ExtResource( 5 )
 vframes = 3
-frame = 1
 
 [node name="Crown" type="Sprite" parent="Background/King"]
-position = Vector2( 20, -48.4307 )
+position = Vector2( 20, -61 )
 texture = ExtResource( 7 )
 
 [node name="Anim" type="AnimationPlayer" parent="Background/King"]
@@ -227,7 +225,7 @@ polygon = PoolVector2Array( 472, 205, 467, 209, 451, 243, 436, 278, 413, 290, 38
 [node name="LandBorder" type="StaticBody2D" parent="Background"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/LandBorder"]
-polygon = PoolVector2Array( 281, 22, 296, 58, 245, 75, 100, 78, 1, 80, -7, 55, -3, 39, 134, 42, 247, 42 )
+polygon = PoolVector2Array( 281, 22, 295.825, 60.3807, 248.812, 79.1861, 100, 78, 1, 80, -7, 55, -3, 39, 134, 42, 247, 42 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Background/LandBorder"]
 polygon = PoolVector2Array( 388, 71, 529, 73, 648, 74, 650, 43, 513, 44, 393, 43, 358, 16, 342, 61 )
@@ -236,20 +234,21 @@ polygon = PoolVector2Array( 388, 71, 529, 73, 648, 74, 650, 43, 513, 44, 393, 43
 position = Vector2( 318, 619 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/BunkerBorder"]
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Background/BunkerBorder"]
 position = Vector2( -162, -150 )
 rotation = -0.185107
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Background/BunkerBorder"]
 position = Vector2( 178, -155 )
 rotation = 0.257804
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
 [node name="Loop" parent="." instance=ExtResource( 1 )]
 position = Vector2( 320, 180 )
+number_of_slimes = 20
 
 [node name="Slimes" type="Node2D" parent="."]
 
@@ -314,6 +313,7 @@ position = Vector2( 320, 2 )
 position = Vector2( 328, -6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 300 )
 anchor_mode = 0
 current = true
 
@@ -323,12 +323,12 @@ script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaScore"]
 position = Vector2( 0.100006, 2.87701 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "camera_pan"
-anims/camera_pan = SubResource( 3 )
-anims/time_out = SubResource( 4 )
+anims/camera_pan = SubResource( 5 )
+anims/time_out = SubResource( 6 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 2 )
@@ -406,7 +406,7 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="CanvasLayer/Timer"]
 [connection signal="body_entered" from="AreaScore" to="AreaScore" method="_on_AreaScore_body_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="CanvasLayer/Timer" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="button_up" from="CanvasLayer/Button" to="CanvasLayer" method="_on_Button_button_up"]
 [connection signal="timeout" from="CanvasLayer/Timer/Timer" to="CanvasLayer/Timer" method="_on_Timer_timeout"]

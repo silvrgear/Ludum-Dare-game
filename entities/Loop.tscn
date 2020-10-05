@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://script/Loop.gd" type="Script" id=1]
 [ext_resource path="res://sprites/loop.png" type="Texture" id=2]
@@ -9,8 +9,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22, 4 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 22, 4 )
+
 [sub_resource type="Animation" id=2]
-resource_name = "move"
+resource_name = "open"
 length = 2.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Blockade/Sprite:self_modulate")
@@ -19,10 +22,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 2.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 2.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Blockade/CollisionShape2D:position")
@@ -31,10 +34,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 2.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 2.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -50, 0 ), Vector2( -50, 0 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( -50, 0 ) ]
 }
 
 [node name="Loop" type="StaticBody2D"]
@@ -104,5 +107,13 @@ texture = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade"]
 shape = SubResource( 1 )
 
+[node name="slime_scanner" type="Area2D" parent="Blockade"]
+position = Vector2( 0, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade/slime_scanner"]
+self_modulate = Color( 0.203922, 0.141176, 0.141176, 1 )
+shape = SubResource( 3 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/move = SubResource( 2 )
+anims/open = SubResource( 2 )
+[connection signal="body_entered" from="Blockade/slime_scanner" to="." method="_on_slime_scanner_body_entered"]

@@ -1,11 +1,14 @@
 extends StaticBody2D
 
-export(int) var rotation_speed = 1
+export(float) var rotation_speed = 1
+export(float) var rotation_sensitivity = 0.3
 var rotation_direction = 0
 
 var control = false
 var startAngle
 var endAngle
+
+export (int) var number_of_slimes
 
 func _ready():
 	pass
@@ -16,7 +19,8 @@ func _process(delta):
 			if not startAngle:
 				startAngle = rad2deg(global_position.angle_to_point(get_global_mouse_position()))
 			endAngle = rad2deg(global_position.angle_to_point(get_global_mouse_position()))
-			rotation_degrees -= startAngle - endAngle
+			rotation_degrees = lerp_angle(rotation_degrees,rotation_degrees- (startAngle - endAngle),rotation_sensitivity)
+#			rotation_degrees -= startAngle - endAngle
 			startAngle = endAngle
 	
 		if Input.is_action_just_released("click"):
@@ -37,8 +41,21 @@ func _input(event):
 func _physics_process(delta):
 	if control == true:
 		rotation_degrees += rotation_direction * rotation_speed
+#	if number_of_slimes <= 0:
+#		blockade()
+	
 	pass
 
 func blockade():
-	$AnimationPlayer.play("move")
+	$AnimationPlayer.play("open")
+	print("open")
 	pass
+
+
+func _on_slime_scanner_body_entered(body):
+	if body.is_in_group("slime"):
+		number_of_slimes -= 1
+	#close gate when everyone is inside
+	if number_of_slimes <= 0:
+		$AnimationPlayer.play_backwards("open")
+	pass # Replace with function body.
